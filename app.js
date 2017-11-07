@@ -1,8 +1,12 @@
 const express = require('express');
 const app = express(); 
+const nunjucks = require('nunjucks');
 const chalk = require('chalk');
-const prompt = chalk.green('\nprompt >')
+const prompt = chalk.green('\nprompt >');
 
+app.set('view engine', 'html'); // have res.render work with html files
+app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
+nunjucks.configure('views'); // point nunjucks to the proper directory for templates
 
 app.use(function(req,res,next) {
     //setTimeout(function() {
@@ -19,7 +23,9 @@ app.listen(3000, function(){
 
 
 app.get('/', function(request, response, next){
-    response.send('<h1>Welcome to the fiesta!!!!!</h1>')
+    //response.send('<h1>Welcome to the fiesta!!!!!!!</h1>')
+    const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+    response.render( 'index', {title: 'Hall of Shame', people: people} );
   })
 
 app.get('/news', function(request, response, next){
