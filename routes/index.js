@@ -4,8 +4,14 @@ const router = express.Router();
 const tweetBank = require('../tweetBank');
 
 router.get('/', function (req, res) {
-  let tweets = tweetBank.list(); //what is list here
-  res.render( 'index', { tweets: tweets } );
+  let tweetList = tweetBank.list(); //what is list here
+  res.render( 'index', { tweets: tweetList } );
+});
+
+router.get('/users/:name', function(req, res) {
+  var name = req.params.name;
+  var data = tweetBank.find({name: name});
+  res.render( 'index', { tweets: data } );
 });
 
 module.exports = router;

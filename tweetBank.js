@@ -36,6 +36,5 @@ function add (name, content) {
     module.exports.add( getFakeName(), getFakeTweet() );
 
   }
-  console.log(data)
-
   
+  console.log(data)
