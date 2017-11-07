@@ -22,7 +22,7 @@ app.use(function(req,res,next) {
         })
 
 app.listen(3000, function(){
-    console.log('server listening')
+    console.log('server is listening')
   })
 
 
